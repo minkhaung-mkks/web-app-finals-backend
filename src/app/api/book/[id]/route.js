@@ -78,7 +78,8 @@ export async function PATCH(req, { params }) {
 
     const updatedResult = await db.collection("book").updateOne(
       { _id: new ObjectId(id) },
-      { $set: partialUpdate }
+      { $set: partialUpdate },
+      { $unset: { status: "" } }
     );
 
     let borrowRequestUpdateResult = null;
@@ -88,10 +89,11 @@ export async function PATCH(req, { params }) {
     console.log("final quantity",finalQuantity)
     if (finalQuantity <= 0) {
       console.log("Deleteing this shit")
+      const bookIdString = String(id);
+      console.log("bookIdString",bookIdString)
       borrowRequestUpdateResult = await db.collection("borrow-request").updateMany(
         {
-          BookId: id,
-          RequestStatus: { $ne: "CLOSE-NO-AVAILABLE-BOOK" }
+          BookId: bookIdString,
         },
         {
           $set: { RequestStatus: "CLOSE-NO-AVAILABLE-BOOK" }
