@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+
+ENV STUFF in case the .txt file is empty
+MONGODB_URI=mongodb+srv://u6712164_db_user:7vE4Ce2gGIISruJE@cluster0.rg1lkc6.mongodb.net/?appName=Cluster0
+ADMIN_SETUP_PASS=adminsetuppass
+JWT_SECRET=myjwtsecret
+
 ## Getting Started
 
 First, run the development server:
